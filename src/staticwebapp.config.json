@@ -1,6 +1,7 @@
 {
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT"
+    "Access-Control-Allow-Methods": "GET, POST, PUT",
+    "content-security-policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
   }
 }
