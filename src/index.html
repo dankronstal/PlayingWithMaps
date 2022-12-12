@@ -28,13 +28,18 @@
     <script src="https://atlas.microsoft.com/sdk/javascript/spatial/0/atlas-spatial.min.js"></script>
 
     <!-- Add reference to the animation module. -->
-    <script src="/lib/azure-maps-animations.min.js"></script>
+    <script src="./lib/azure-maps-animations.min.js"></script>
     
     <script>
         var datasets = [
             {
                 displayName: 'Rick GPS Test (csv)',                
-                url: '/data/RicksBreadcrumbLocations.csv',
+                url: 'https://raw.githubusercontent.com/dankronstal/PlayingWithMaps/main/src/data/RicksBreadcrumLocations.csv',
+                timestampProperty: 'Date'
+            },
+            {
+                displayName: 'Rick GPS Test Loose (csv)',                
+                url: 'https://raw.githubusercontent.com/dankronstal/PlayingWithMaps/main/src/data/RickBreadcrumbLocationsLoose.csv',
                 timestampProperty: 'Date'
             }
         ];
