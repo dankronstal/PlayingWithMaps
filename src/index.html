@@ -34,12 +34,12 @@
         var datasets = [
             {
                 displayName: 'Rick GPS Test (csv)',                
-                url: 'https://raw.githubusercontent.com/dankronstal/PlayingWithMaps/main/src/data/RicksBreadcrumLocations.csv',
+                url: 'https://raw.githubusercontent.com/dankronstal/PlayingWithMaps/main/src/data/RicksBreadcrumbLocations.csv',
                 timestampProperty: 'Date'
             },
             {
                 displayName: 'Rick GPS Test Loose (csv)',                
-                url: 'https://raw.githubusercontent.com/dankronstal/PlayingWithMaps/main/src/data/RickBreadcrumbLocationsLoose.csv',
+                url: 'https://raw.githubusercontent.com/dankronstal/PlayingWithMaps/main/src/data/RicksBreadcrumbLocationsLoose.csv',
                 timestampProperty: 'Date'
             }
         ];
@@ -204,6 +204,34 @@
                             map.events.add('onprogress', animation, onAnimationProgress);
 
                             controls.style.display = '';
+
+
+
+
+                            /*Manually add point locations*/
+                            var points = [
+                                new atlas.data.Point([-81.516, 43.962]),
+                                new atlas.data.Point([-81.573,44.069]),
+                                new atlas.data.Point([-81.123,44.03])]
+
+                            /*Create a data source and add it to the map*/
+                            var bubbleDataSource = new atlas.source.DataSource();
+                            map.sources.add(bubbleDataSource);
+                            /*Add multiple points to the data source*/ 
+                            bubbleDataSource.add(points);
+
+                            //Create a bubble layer to render the filled in area of the circle, and add it to the map.*/
+                            map.layers.add(new atlas.layer.BubbleLayer(bubbleDataSource, null, {
+                                radius: 15,
+                                strokeColor: "green",
+                                strokeWidth: 6, 
+                                color: "red" 
+                            }));
+
+
+
+
+
                         }
                     }
                 });
@@ -287,5 +315,11 @@
 
     <div id="infoPanel" style="position:absolute;top:15px;right:15px;border-radius:5px;padding:5px;background-color:white;max-width:300px;overflow:hidden;"></div>
 
+    <fieldset style="width:calc(100% - 30px);min-width:290px;margin-top:10px;">
+        <legend>Animate a GPS trace</legend>
+        This sample shows how to smoothly animate a symbol along a route path taking into consideration timestamps for each point in the route path. 
+        This sample uses the <a href="https://docs.microsoft.com/en-us/azure/azure-maps/how-to-use-spatial-io-module" target="_blank" title="Azure Maps Spatial IO module">Azure Maps Spatial IO module</a> 
+        and the open source <a href="https://github.com/Azure-Samples/azure-maps-animations" target="_blank" title="Azure Maps Animation module">Azure Maps Animation module</a>
+    </fieldset>
 </body>
 </html>
